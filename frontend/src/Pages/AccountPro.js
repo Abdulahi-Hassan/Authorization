@@ -8,7 +8,6 @@ export const UpdateUserProfile = () => {
     let { id } = useParams()
     let user = JSON.parse(localStorage.getItem('user'))
     let iamgeref = useRef()
-
     const [User, setUser] = useState({
         Name: user.Name,
         Profile:  user.Profile
