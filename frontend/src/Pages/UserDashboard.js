@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { TiThMenu } from "react-icons/ti";
 import '../index.css'
-import { SingleDash } from './SingleDashboard';
+// import { SingleDash } from '../p';
 import { useEffect } from 'react';
 export const UserDashboard = () => {
     let user = JSON.parse(localStorage.getItem('user'))
@@ -50,7 +50,7 @@ export const UserDashboard = () => {
                 </div>
             </div>
             <div className='col singleuser'>
-                <SingleDash />
+                {/* <SingleDash /> */}
             </div>
             <div className='col singleuserimage'>
                 {/* <UpdateUserProfile/> */}
