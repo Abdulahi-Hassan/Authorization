@@ -2,13 +2,13 @@ require('dotenv').config()
 let jwt = require('jsonwebtoken')
 const VerifyToken = (req, res, next) => {
     // Cookie Header
-    // let cookies = req.headers.cookie && req.headers.cookie.split("=")[1]
-    // if (!cookies) return res.status(404).json({ message: "Token not found" })
-    // jwt.verify(cookies, process.env.token, (err, user) => {
-    //     if (err) return res.status(404).json({ message: "invalid token" })
-    //     req.user = user
-    //     next()
-    // })
+    let cookies = req.headers.cookie && req.headers.cookie.split("=")[1]
+    if (!cookies) return res.status(404).json({ message: "Token not found" })
+    jwt.verify(cookies, process.env.token, (err, user) => {
+        if (err) return res.status(404).json({ message: "invalid token" })
+        req.user = user
+        next()
+    })
 
 
     //authorization header
@@ -24,13 +24,13 @@ const VerifyToken = (req, res, next) => {
 
     //token header
 
-    let token = req.headers.token
-    if (!token) return res.status(404).json({ message: "Token not found" })
-    jwt.verify(token, process.env.token, (err, user) => {
-        if (err) return res.status(404).json({ message: "invalid token" })
-        req.user = user
-        next()
-    })
+    // let token = req.headers.token
+    // if (!token) return res.status(404).json({ message: "Token not found" })
+    // jwt.verify(token, process.env.token, (err, user) => {
+    //     if (err) return res.status(404).json({ message: "invalid token" })
+    //     req.user = user
+    //     next()
+    // })
 }
 const UserAthorization = (req, res, next) => {
     VerifyToken(req, res, () => {

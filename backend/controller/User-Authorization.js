@@ -38,18 +38,17 @@ const SignIn = async (req, res) => {
     const ispasswordcorrect = await bcrypt.compare(Password, UserExist.Password)
     if (!ispasswordcorrect) return res.status(200).json("Incorrect Password")
     // Create Token
-    let token = jwt.sign({ id: UserExist._id, Role: UserExist.Role }, process.env.token, { expiresIn: "1hr" })
-    let RefreshToken = jwt.sign({ id: UserExist._id, Role: UserExist.Role }, process.env.token, { expiresIn: "60s" })
+    let token = jwt.sign({ id: UserExist._id, Role: UserExist.Role }, process.env.token, { expiresIn: "20s" })
 
     let { id, Role } = UserExist
-    res.cookie([id, Role], token, {
+    res.cookie("token", token, {
         httpOnly: true,
         path: '/',
         expires: new Date(Date.now() + 1000 * 30),
         sameSite: "lax"
     })
 
-    res.header("token", token).status(200).json({ status: "Success", message: "Successfully Logged In", token, RefreshToken, Role,UserExist })
+    res.status(200).json({ status: "Success", message: "Successfully Logged In", token,UserExist })
 
 }
 
