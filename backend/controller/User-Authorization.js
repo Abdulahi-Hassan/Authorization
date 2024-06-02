@@ -1,5 +1,5 @@
 const { UserValidation, EmailValidation, PasswordValidation, MatchpassValidation } = require('../model/Validation')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 let jwt = require('jsonwebtoken')
 const UserModel = require('../model/User-Model')
 require('dotenv').config()

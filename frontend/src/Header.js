@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { TiThMenu } from "react-icons/ti";
 export const Header = () => {
-    let User = JSON.parse(localStorage.getItem('user'))
+    // let User = JSON.parse(localStorage.getItem('user'))
     const Handle = () => {
         let nav = document.querySelector('nav')
         nav.classList.toggle('menu')
@@ -12,7 +12,7 @@ export const Header = () => {
         setTimeout(() => {
             navigate('/login')
         },);
-        localStorage.clear()
+        localStorage.removeItem("token")
     }
     return (
         <div className="container lii ">
@@ -22,9 +22,9 @@ export const Header = () => {
                     <Link to='/' className='active'>Home</Link>
                     <Link to='/about'>About</Link>
                     <Link to='/services' >Services</Link>
-                    {User && User.Role === "false" &&
+                    {/* {User && User.Role === "false" &&
                         (<Link to='/UserDashboard'>User</Link>)
-                    }
+                    } */}
                     <Link to='/contuct'>Contuct</Link>
                 </nav>
                 <div className='signup' >

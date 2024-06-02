@@ -7,7 +7,14 @@ const app = express()
 const cors=require('cors')
 app.use(cors())
 app.use(express.json())
-app.use(express.static('public/images'))
+const path = require('path')
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../frontend/build')))
+app.get('/*',(req,res)=>{
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+    
+})
+
 app.use('/api', require('./routes/User-Route'))
 mongoose.set('strictQuery', false)
 DatabaseConnection

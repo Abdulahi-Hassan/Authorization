@@ -1,5 +1,5 @@
 const UserModel = require('../model/User-Model')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const GetAllUser = async (req, res) => {
     let GetAlluser = await UserModel.find()
     res.status(200).json({ GetAlluser })
